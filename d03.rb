@@ -45,16 +45,32 @@ def find_bank_joltage_part_two(bank)
   Integer(joltage_str)
 end
 
-lines = File.readlines("./input/d03").map {|l| l.chomp()}
+def solve(joltage_calculator)
+  lines = File.readlines("./input/d03").map {|l| l.chomp()}
 
-sum = 0
+  sum = 0
 
-lines.each do |line|
-  log(line)
-  bank = line.chars()
-  joltage = find_bank_joltage_part_two(bank)
-  log("Joltage: #{joltage}")
-  sum = sum + joltage
+  lines.each do |line|
+    log(line)
+    bank = line.chars()
+    joltage = joltage_calculator.call(bank)
+    log("Joltage: #{joltage}")
+    sum = sum + joltage
+  end
+
+  sum
 end
 
-puts sum
+def solve_part_one
+  solve(->(bank) { find_bank_joltage(bank) })
+end
+
+def solve_part_two
+  solve(->(bank) { find_bank_joltage_part_two(bank) })
+end
+
+if ARGV[0] == "2"
+  puts solve_part_two
+else
+  puts solve_part_one
+end

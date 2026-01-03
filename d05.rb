@@ -53,6 +53,9 @@ def solve_part_two(data)
   result.map { |r| r[1] - r[0] + 1 }.sum
 end
 
-data = read_data(ARGV.size > 0 ? ARGV[0] : "input/d05")
-puts "Part 1: #{solve_part_one(data)}"
-puts "Part 2: #{solve_part_two(data)}"
+data = read_data("input/d05")
+if ARGV[0] == "2"
+  puts solve_part_two(data)
+else
+  puts solve_part_one(data)
+end

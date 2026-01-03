@@ -64,4 +64,8 @@ def solve_part_two(manifold)
 end
 
 manifold = File.readlines("input/d07").map(&:chomp)
-puts solve_part_two(manifold)
+if ARGV[0] == "2"
+  puts solve_part_two(manifold)
+else
+  puts solve_part_one(manifold)
+end

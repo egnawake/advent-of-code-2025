@@ -42,19 +42,35 @@ def is_valid_id_part_two(id)
   false
 end
 
-text = File.read("./input/d02p1")
-ranges = parse_ranges(text)
+def solve(id_validator)
+  text = File.read("./input/d02p1")
+  ranges = parse_ranges(text)
 
-sum = 0
+  sum = 0
 
-ranges.each do |r|
-  id = r[0]
-  while id <= r[1] do
-    if is_valid_id_part_two(id) then
-      sum = sum + id
+  ranges.each do |r|
+    id = r[0]
+    while id <= r[1] do
+      if id_validator.call(id) then
+        sum = sum + id
+      end
+      id = id + 1
     end
-    id = id + 1
   end
+
+  sum
 end
 
-puts sum
+def solve_part_one
+  solve(->(id) { is_valid_id(id) })
+end
+
+def solve_part_two
+  solve(->(id) { is_valid_id_part_two(id) })
+end
+
+if ARGV[0] == "2"
+  puts solve_part_two
+else
+  puts solve_part_one
+end

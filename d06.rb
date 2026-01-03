@@ -49,4 +49,8 @@ def solve_part_two
   end.reduce(:+)
 end
 
-puts solve_part_two
+if ARGV[0] == "2"
+  puts solve_part_two
+else
+  puts solve_part_one
+end
