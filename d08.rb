@@ -1,5 +1,4 @@
 require "set"
-
 require_relative "cli"
 
 class Point
@@ -83,4 +82,4 @@ class Day08Solver
   end
 end
 
-CLI.run(Day08Solver)
+CLI.new(Day08Solver).start
